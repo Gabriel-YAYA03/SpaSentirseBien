@@ -1,0 +1,4 @@
+.MuiButton-root {
+    border-radius: var(--border-radius);
+    text-transform: none;
+}
