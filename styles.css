@@ -1,0 +1,430 @@
+/* Estilo global */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-size: cover;
+}
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 165.9px;
+}
+
+.navbar img {
+    width: 80px; /* Tamaño del logo */
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #575757;
+}
+
+.navbar .nav-links a:first-child {
+    border: 1px solid #fff; /* Borde blanco */
+}
+
+/* Estilo del encabezado de la página principal */
+.home-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 50px;
+    color: #333;
+    font-weight: 800;
+}
+
+/* Sección del spa */
+.hero-section {
+    display: flex;
+    justify-content: center; /* Centramos el contenido en la sección */
+    align-items: center; /* Alineación superior */
+    margin: 40px 20px;
+    margin-bottom: 80px;
+    font-size: 24px;
+    color: #333;
+    gap: 40px; /* Espacio entre imagen y descripción */
+
+}
+
+.hero-section img {
+    max-width: 50%; /* Mantener tamaño de imagen */
+    height: auto;
+    
+}
+
+.hero-description {
+    max-width: 631px; /* Ampliar descripción */
+    text-align: left; /* Alinear a la izquierda para una mejor lectura */
+}
+
+.hero-description p {
+    margin: 0px;
+    line-height: 1.5;
+}
+
+.hero-description h2 {
+    margin: 0px;
+    margin-bottom: 30px;
+    font-size: 36px; /* Tamaño de fuente para el título */
+}
+
+/* Sección de servicios */
+.services-container {
+    background-color: #f4f4f4; /* Fondo para la sección de servicios */
+    border-radius: 8px;
+    padding-top: 0;
+    padding-bottom: 80px;
+}
+
+.services-title {
+    text-align: center;
+    font-size: 28px;
+    color: #fff;
+    background-color: #333;
+    margin-top: 0px;
+    margin-bottom: 60px;
+    padding: 40px 0; /* Espaciado interno */
+}
+
+/* Servicios del spa */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Alinear servicios en fila */
+}
+
+.service-box {
+    background-color: #fff; /* Fondo blanco para las cajas de servicios */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px; /* Ancho de cada servicio */
+    margin: 10px; /* Margen para espacios entre servicios */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-box:hover {
+    transform: translateY(-5px);
+}
+
+.service-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Botón para explorar servicios */
+.explore-button {
+    display: block; /* Se comporta como bloque para ocupar el ancho completo */
+    max-width: 264px; /* Ancho del botón */
+    margin: auto; /* Centrado automático en la sección */
+    margin-top: 60px;
+    padding: 20px; /* Espaciado interno */
+    color: #000; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    border: 2px solid #000; /* Sin borde */
+    /*border-radius: 5px; Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 18px; /* Tamaño de fuente */
+    transition: background-color 0.3s, opacity 0.3s; /* Transiciones para el fondo y la opacidad */
+}
+
+.explore-button:hover {
+    background-color: #000; /* Fondo más claro al pasar el mouse */
+    color: white;
+    opacity: 0.8; /* Efecto de transparencia al pasar el mouse */
+}
+
+/* Sección de Turnos */
+.turnos-container {
+    background-color: #000; /* Fondo negro */
+    color: white; /* Texto en blanco para contraste */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    flex-wrap: wrap; /* Permitir adaptación en pantallas pequeñas */
+}
+
+.turnos-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Espacio entre los elementos */
+}
+
+/* Línea separadora */
+.turnos-divider {
+    width: 2px; /* Grosor de la línea */
+    height: 400px; /* Altura de la línea */
+    background-color: #fff; /* Color blanco */
+}
+
+.turnos-left {
+    text-align: center;
+}
+
+.turnos-left h2 {
+    font-size: 42px; /* Título grande */
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.turnos-left img {
+    width: 250px; /* Tamaño del icono de calendario */
+    height: auto;
+}
+
+.turnos-right {
+    text-align: left;
+    max-width: 500px;
+    margin-top: 0 !important;
+}
+
+.turnos-description {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+/* Botón de reserva */
+.reserve-button {
+    display: inline-block;
+    padding: 12px 24px;
+    color: white;
+    text-align: center;
+    border: 2px solid #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.reserve-button:hover {
+    background-color: #fff;
+    color: #000;
+    opacity: 0.8;
+}
+
+/* Sección de contacto (footer) */
+.contact-container {
+    background-color: #222; /* Fondo oscuro */
+    color: white; /* Texto en blanco */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor de las cajas */
+.contact-content {
+    display: flex;
+    gap: 40px;
+}
+
+/* Cada caja tendrá el mismo ancho */
+.contact-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para la caja del logo */
+.contact-left {
+    text-align: center;
+}
+
+.contact-left img {
+    width: 300px; /* Tamaño del logo */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Caja contenedora del formulario y la información de contacto */
+.contact-right {
+    display: flex;
+    align-items: stretch; /* Asegura que ambas cajas ocupen la misma altura */
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* Títulos "Newsletter" y "Contáctenos" más grandes */
+.contact-title {
+    font-size: 36px; /* Tamaño más grande */
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-top: 0;
+}
+
+/* Caja general del formulario */
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Para que ocupe el mismo espacio que la información de contacto */
+}
+
+/* Caja del formulario con color diferenciado */
+.form-container {
+    background-color: #333; /* Color distinto del fondo */
+    padding: 25px;
+    max-width: 280px; /* Ancho más reducido */
+}
+
+.form-container p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 2.0;
+}
+
+/* Estilos del formulario */
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.subscribe-form input {
+    height: 30px;
+    padding: 10px;
+    border: none;
+}
+
+.subscribe-form button {
+    background-color: #ff6f61;
+    color: #000;
+    height: 50px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.subscribe-form button:hover {
+    background-color: #b54842;
+    color: #fff;
+}
+
+/* Caja de información de contacto */
+.contact-info, .contact-description {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Para que ocupe el mismo espacio que el formulario */
+}
+
+.contact-description {
+    gap: 25px;
+}
+
+.contact-info p {
+    margin: 0;
+}
+
+/* Iconos de redes sociales */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons img {
+    width: 30px; /* Tamaño de los íconos */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1237px) {
+    .navbar {
+        flex-direction: column; /* Barra de navegación en columna */
+        gap: 10px;
+    }
+
+    .hero-section {
+        flex-direction: column; /* Cambiamos a columna en móviles */
+        align-items: center; /* Centrar en móviles */
+    }
+
+    .hero-section img {
+        margin-right: 0; /* Sin margen en móviles */
+        max-width: 100%; /* Ajustar imagen al ancho completo en móviles */
+    }
+
+    .hero-description {
+        max-width: 100%; /* Descripción a ancho completo en móviles */
+        text-align: center; /* Centrar descripción en móviles */
+    }
+
+    .services {
+        flex-direction: column; /* Servicios en columna en móviles */
+        align-items: center; /* Centrar servicios */
+    }
+
+    .turnos-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .turnos-content {
+        flex-direction: column; /* Cambia a diseño vertical en pantallas pequeñas */
+        align-items: center;
+    }
+
+    .turnos-divider {
+        width: 100%; /* Línea más ancha en móviles */
+        height: 2px; /* Grosor menor en móviles */
+        margin: 20px 0; /* Espaciado para separar los elementos */
+    }
+    
+    .turnos-left, .turnos-right {
+        flex: none;
+        max-width: 100%;
+    }
+    
+    .turnos-right {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-right {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-title {
+        text-align: center;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
+
+    .form-container {
+        max-width: 100%; /* Expandir en móviles */
+    }
+}
