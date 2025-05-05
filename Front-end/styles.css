@@ -104,30 +104,54 @@ body {
 
 /* Servicios del spa */
 .services {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Alinear servicios en fila */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .service-box {
-    background-color: #fff; /* Fondo blanco para las cajas de servicios */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 300px; /* Ancho de cada servicio */
-    margin: 10px; /* Margen para espacios entre servicios */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .service-box:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .service-box img {
     max-width: 100%;
-    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.service-box h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-box p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.service-box ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #444;
+    text-align: left;
+}
+
+.service-box ul li {
+    margin-bottom: 5px;
 }
 
 /* Botón para explorar servicios */
