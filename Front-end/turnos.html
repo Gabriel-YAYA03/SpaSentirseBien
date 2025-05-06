@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Turno - Sentirse Bien</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="turnos.js"></script>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <img src="images/Logo blanco.png" alt="Logo del spa">
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Título de la página -->
+    <h1 class="turnos-page-title">RESERVAR TU TURNO</h1>
+
+    <!-- Contenedor principal -->
+    <section class="turnos-main-container">
+        <!-- Formulario de reserva -->
+        <div class="turnos-form-container">
+            <form id="turnos-form">
+                <!-- Selección de fecha y hora -->
+                <div class="turnos-form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="turnos-form-group">
+                    <label for="hora">Hora:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+
+                <!-- Selección de servicios -->
+                <div class="turnos-form-group">
+                    <label for="servicios">Selecciona tus servicios:</label>
+                    <div id="turnos-servicios-list">
+                        <!-- Masajes -->
+                        <h3>Masajes</h3>
+                        <div class="service-button" data-duracion="60" data-precio="50">Anti-stress (60 min - $50)</div>
+                        <div class="service-button" data-duracion="75" data-precio="60">Descontracturantes (75 min - $60)</div>
+                        <div class="service-button" data-duracion="90" data-precio="70">Masajes con piedras calientes (90 min - $70)</div>
+                        <div class="service-button" data-duracion="60" data-precio="55">Circulatorios (60 min - $55)</div>
+                    
+                        <!-- Belleza -->
+                        <h3>Belleza</h3>
+                        <div class="service-button" data-duracion="45" data-precio="30">Lifting de pestaña (45 min - $30)</div>
+                        <div class="service-button" data-duracion="30" data-precio="25">Depilación facial (30 min - $25)</div>
+                        <div class="service-button" data-duracion="60" data-precio="40">Belleza de manos y pies (60 min - $40)</div>
+                    
+                        <!-- Tratamientos Faciales -->
+                        <h3>Tratamientos Faciales</h3>
+                        <div class="service-button" data-duracion="90" data-precio="80">Punta de Diamante (90 min - $80)</div>
+                        <div class="service-button" data-duracion="75" data-precio="70">Limpieza profunda + Hidratación (75 min - $70)</div>
+                        <div class="service-button" data-duracion="90" data-precio="90">Crio frecuencia facial (90 min - $90)</div>
+                    
+                        <!-- Tratamientos Corporales -->
+                        <h3>Tratamientos Corporales</h3>
+                        <div class="service-button" data-duracion="60" data-precio="100">VelaSlim (60 min - $100)</div>
+                        <div class="service-button" data-duracion="75" data-precio="90">DermoHealth (75 min - $90)</div>
+                        <div class="service-button" data-duracion="90" data-precio="110">Criofrecuencia (90 min - $110)</div>
+                        <div class="service-button" data-duracion="90" data-precio="120">Ultracavitación (90 min - $120)</div>
+                    
+                        <!-- Servicios Grupales -->
+                        <h3>Servicios Grupales</h3>
+                        <div class="service-button" data-duracion="120" data-precio="150">Hidromasaje (120 min - $150)</div>
+                        <div class="service-button" data-duracion="60" data-precio="20">Yoga (60 min - $20)</div>
+                    </div>
+                </div>
+
+                <!-- Botón de envío -->
+                <button id="continuar-btn" class="turnos-reserve-button" type="button">Continuar</button>
+            </form>
+        </div>
+
+        <!-- Resumen de selección -->
+        <div class="turnos-summary-container">
+            <h2>Resumen de tu reserva</h2>
+            <p><strong>Fecha:</strong> <span id="resumen-fecha">No seleccionada</span></p>
+            <p><strong>Hora:</strong> <span id="resumen-hora">No seleccionada</span></p>
+            <h3>Servicios seleccionados:</h3>
+            <ul id="resumen-servicios">
+                <!-- Aquí se agregarán los servicios seleccionados dinámicamente -->
+            </ul>
+            <p><strong>Duración total:</strong> <span id="resumen-duracion">0</span> min</p>
+            <p><strong>Precio total:</strong> $<span id="resumen-precio">0</span></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="contact-container" id="contacto">
+        <div class="contact-content">
+            <p>📍 Dirección: Av. Resistencia 123, Chaco</p>
+            <p>📞 Teléfono: +54 3624762542</p>
+            <p>📩 Email: reservas@sentirsebien.com</p>
+        </div>
+    </footer>
+
+</body>
+</html>

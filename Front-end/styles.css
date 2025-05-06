@@ -249,6 +249,226 @@ body {
     opacity: 0.8;
 }
 
+/* Contenedor principal de turnos */
+.turnos-main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Contenedor del resumen */
+.turnos-summary-container {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Fijo al hacer scroll */
+    top: 20px; /* Espaciado desde la parte superior */
+    height: fit-content; /* Ajustar al contenido */
+}
+
+.turnos-summary-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.turnos-summary-container p,
+.turnos-summary-container ul {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.turnos-summary-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.turnos-summary-container ul li {
+    margin-bottom: 5px;
+}
+
+/* Título de la página de turnos */
+.turnos-page-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 50px;
+    color: #333;
+    font-weight: 800;
+}
+
+/* Contenedor del formulario de turnos */
+.turnos-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Grupos del formulario */
+.turnos-form-group {
+    margin-bottom: 20px;
+}
+
+.turnos-form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.turnos-form-group input[type="date"],
+.turnos-form-group input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Lista de servicios */
+#turnos-servicios-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#turnos-servicios-list h3 {
+    width: 100%;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#turnos-servicios-list div {
+    display: inline-block;
+    position: relative;
+}
+
+.service-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.service-button:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.service-button.selected {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+/* Ocultar los checkboxes */
+#turnos-servicios-list input[type="checkbox"] {
+    display: none;
+}
+
+/* Botón de reserva */
+.turnos-reserve-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.turnos-reserve-button:hover {
+    background-color: #575757;
+}
+
+/* Contenedor principal de turnos */
+.contact-main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Título de la página de contacto */
+.contact-page-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 50px;
+    color: #333;
+    font-weight: 800;
+}
+
+/* Contenedor del formulario de contacto */
+.contact-form-container {
+    flex: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Grupos del formulario */
+.contact-form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact-form-group input:not([type="radio"]),
+.contact-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Información del método de pago */
+.contact-metodo-pago-info {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Botón de confirmación de reserva */
+.contact-reserve-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-reserve-button:hover {
+    background-color: #575757;
+}
+
 /* Sección de contacto (footer) */
 .contact-container {
     background-color: #222; /* Fondo oscuro */
