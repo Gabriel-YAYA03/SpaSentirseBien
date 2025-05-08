@@ -595,6 +595,56 @@ body {
     width: 30px; /* Tamaño de los íconos */
 }
 
+/* Título del panel de administración */
+.admin-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Contenedor principal del panel */
+.admin-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Secciones del panel */
+.admin-section {
+    margin-bottom: 20px;
+}
+
+.admin-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.admin-section button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-section button:hover {
+    background-color: #575757;
+}
+
+.hidden {
+    display: none;
+}
+
 /* Estilos responsivos */
 @media (max-width: 1237px) {
     .navbar {

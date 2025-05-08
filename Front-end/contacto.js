@@ -5,9 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const fecha = urlParams.get("fecha");
     const hora = urlParams.get("hora");
-    const servicios = JSON.parse(urlParams.get("servicios") || "[]");
+    const servicios = JSON.parse(urlParams.get("servicios") || "[]").map(servicio => parseInt(servicio)); // Asegurarse de que sean números
     const duracionTotal = urlParams.get("duracionTotal");
     const precioTotal = urlParams.get("precioTotal");
+
+    console.log({ fecha, hora, servicios, duracionTotal, precioTotal });
+
+    // Validar que los servicios sean válidos
+    if (servicios.some(servicio => isNaN(servicio))) {
+        alert("Error: Los servicios seleccionados no son válidos.");
+        return;
+    }
 
     metodoPagoRadios.forEach(radio => {
         radio.addEventListener("change", () => {
@@ -27,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const resumenServicios = document.getElementById("resumen-servicios");
     servicios.forEach(servicio => {
         const li = document.createElement("li");
-        li.textContent = servicio;
+        li.textContent = `Servicio ID: ${servicio}`;
         resumenServicios.appendChild(li);
     });
     document.getElementById("resumen-duracion").textContent = duracionTotal || "0";
@@ -45,21 +53,21 @@ document.addEventListener("DOMContentLoaded", () => {
             telefono: formData.get("telefono"),
             nacionalidad: formData.get("nacionalidad"),
             dni: formData.get("dni"),
-            correo: formData.get("correo"),
+            email: formData.get("correo"),
             comentario: formData.get("comentario") || "",
         };
 
         const turno = {
             fecha,
             hora,
-            servicios,
-            duracionTotal,
-            precioTotal,
+            servicios: servicios.map(servicio => parseInt(servicio)), // Convertir a números
+            duracionTotal: parseInt(duracionTotal),
+            precioTotal: parseFloat(precioTotal),
             metodoPago: formData.get("metodo-pago"),
         };
 
         try {
-            const response = await fetch("http://tu-backend.com/api/reservas", {
+            const response = await fetch("http://localhost:3000/api/turnos/reservas", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -72,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = "index.html";
             } else {
                 const errorData = await response.json();
-                alert(`Error al confirmar la reserva: ${errorData.message}`);
+                alert(`Error al confirmar la reserva: ${errorData.error}`);
             }
         } catch (error) {
             console.error("Error al enviar los datos:", error);

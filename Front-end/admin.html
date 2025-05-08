@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="admin-title">Panel de Administración</h1>
+    <section class="admin-container">
+        <!-- Gestión de Servicios -->
+        <div class="admin-section">
+            <h2>Gestión de Servicios</h2>
+            <button id="add-service">Añadir Servicio</button>
+            <button id="edit-service">Modificar Servicio</button>
+            <button id="delete-service">Eliminar Servicio</button>
+        </div>
+
+        <!-- Formulario para añadir o modificar servicios -->
+        <div id="service-form-container" class="admin-section hidden">
+            <h2 id="service-form-title">Añadir Servicio</h2>
+            <form id="service-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Servicio:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="duracion">Duración (minutos):</label>
+                    <input type="number" id="duracion" name="duracion" required>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio ($):</label>
+                    <input type="number" id="precio" name="precio" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="Masajes">Masajes</option>
+                        <option value="Belleza">Belleza</option>
+                        <option value="Tratamientos Faciales">Tratamientos Faciales</option>
+                        <option value="Tratamientos Corporales">Tratamientos Corporales</option>
+                        <option value="Servicios Grupales">Servicios Grupales</option>
+                    </select>
+                </div>
+                <button type="submit" id="submit-service">Guardar</button>
+                <button type="button" id="cancel-service">Cancelar</button>
+            </form>
+        </div>
+
+        <!-- Gestión de Combos -->
+        <div class="admin-section">
+            <h2>Gestión de Combos</h2>
+            <button id="add-combo">Añadir Combo</button>
+            <button id="edit-combo">Modificar Combo</button>
+            <button id="delete-combo">Eliminar Combo</button>
+        </div>
+
+        <!-- Generar Código de Invitación -->
+        <div class="admin-section">
+            <h2>Generar Código de Invitación</h2>
+            <form id="generate-code-form">
+                <label for="email">Correo del nuevo administrador:</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+                <button type="submit">Generar y Enviar Código</button>
+            </form>
+        </div>
+
+        <!-- Cerrar Sesión -->
+        <div class="admin-section">
+            <button id="logout-button">Cerrar Sesión</button>
+        </div>
+    </section>
+    <script src="admin.js"></script>
+</body>
+</html>
