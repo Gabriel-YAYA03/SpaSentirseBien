@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("Respuesta del servidor:", data);
                 serviceForm.reset();
                 serviceFormContainer.classList.add("hidden");
+                window.location.href = "servicios.html";
             } else {
                 const errorData = await response.json();
                 alert(`Error al modificar el servicio: ${errorData.error}`);
@@ -129,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 alert("Servicio eliminado exitosamente.");
+                window.location.href = "servicios.html"; // Redirigir a la página de servicios
             } else {
                 alert("Error al eliminar el servicio.");
             }

@@ -6,10 +6,9 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM servicio');
-        // Asegurarse de que los datos estén en el formato correcto
         const servicios = rows.map(servicio => ({
             ...servicio,
-            precio: parseFloat(servicio.precio) || 0.00, // Convertir precio a número o asignar 0.00 si es nulo
+            precio: parseFloat(servicio.precio) || 0.00, // Convertir precio a número
         }));
         res.json(servicios);
     } catch (err) {
@@ -18,9 +17,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Obtener un servicio por ID
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await db.query('SELECT * FROM servicio WHERE id_servicio = ?', [id]);
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'El servicio no existe.' });
+        }
+        res.json(rows[0]);
+    } catch (err) {
+        console.error('Error al obtener el servicio:', err);
+        res.status(500).json({ error: 'Error al obtener el servicio' });
+    }
+});
+
 // Crear un nuevo servicio
 router.post('/', async (req, res) => {
-    console.log('Datos recibidos en POST /api/servicios:', req.body);
     const { nombre, descripcion, duracion, precio, categoria } = req.body;
     try {
         const [result] = await db.query(
@@ -37,7 +50,6 @@ router.post('/', async (req, res) => {
 // Actualizar un servicio
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    console.log('ID recibido en PUT /api/servicios:', id); // Log para depuración
     const { nombre, descripcion, duracion, precio, categoria } = req.body;
     try {
         const [result] = await db.query(
@@ -58,11 +70,10 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const [result] = await db.query('SELECT * FROM servicio WHERE id_servicio = ?', [id]);
-        if (result.length === 0) {
+        const [rows] = await db.query('SELECT * FROM servicio WHERE id_servicio = ?', [id]);
+        if (rows.length === 0) {
             return res.status(404).json({ error: 'El servicio no existe.' });
         }
-
         await db.query('DELETE FROM servicio WHERE id_servicio = ?', [id]);
         res.json({ message: 'Servicio eliminado exitosamente.' });
     } catch (err) {
