@@ -35,98 +35,86 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("edit-service").addEventListener("click", async () => {
         const serviceId = prompt("Ingrese el ID del servicio que desea editar:");
         if (!serviceId || isNaN(serviceId)) {
-            alert("Debe ingresar un ID válido.");
+            alert("Debe ingresar un ID válido");
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/servicios/${serviceId}`);
+            const response = await fetch(`http://localhost:3000/api/servicios/${serviceId}`, {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || "No se pudo obtener el servicio");
+                throw new Error(errorData.error || "Error al obtener el servicio");
             }
-            
-            const servicio = await response.json();
-            if (!servicio) throw new Error("Servicio no encontrado");
 
-            // Rellenar formulario
-            document.getElementById("nombre").value = servicio.nombre || "";
-            document.getElementById("descripcion").value = servicio.descripcion || "";
-            document.getElementById("duracion").value = servicio.duracion || "";
-            document.getElementById("precio").value = servicio.precio || "";
-            document.getElementById("categoria").value = servicio.categoria || "Masajes";
-
-            formTitle.textContent = "Modificar Servicio";
+            const serviceData = await response.json();
+            formTitle.textContent = "Editar Servicio";
             serviceForm.dataset.action = "edit";
-            serviceForm.dataset.id = serviceId;
+            serviceForm.dataset.serviceId = serviceId; // Guardar el ID
+            document.getElementById("nombre").value = serviceData.nombre;
+            document.getElementById("duracion").value = serviceData.duracion;
+            document.getElementById("precio").value = serviceData.precio;
+            document.getElementById("categoria").value = serviceData.categoria;
             serviceFormContainer.classList.remove("hidden");
+
         } catch (error) {
             console.error("Error al obtener el servicio:", error);
             alert(`Error: ${error.message}`);
         }
     });
 
-    // Manejar envío del formulario (CREAR/EDITAR)
+
+    // Procesar el formulario (añadir o editar)
     serviceForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-    
-        const action = serviceForm.dataset.action;
-        const serviceId = serviceForm.dataset.id;
-    
-        // Validar datos del formulario
-        const nombre = document.getElementById("nombre").value.trim();
-        const descripcion = document.getElementById("descripcion").value.trim();
+
+        const nombre = document.getElementById("nombre").value;
         const duracion = parseInt(document.getElementById("duracion").value);
         const precio = parseFloat(document.getElementById("precio").value);
         const categoria = document.getElementById("categoria").value;
 
-        if (!nombre || !categoria || isNaN(duracion) || isNaN(precio)) {
-            alert("Por favor complete todos los campos correctamente");
+        if (!nombre || isNaN(duracion) || isNaN(precio) || !categoria) {
+            alert("Por favor, complete todos los campos correctamente.");
             return;
         }
 
-        const formData = {
-            nombre,
-            descripcion: descripcion || null, // Permitir descripción vacía
-            duracion,
-            precio,
-            categoria
-        };
+        const serviceData = { nombre, duracion, precio, categoria };
+        const action = serviceForm.dataset.action;
+        const serviceId = serviceForm.dataset.serviceId;
 
-        console.log("Datos enviados al backend:", { action, serviceId, ...formData });
+        let url = "http://localhost:3000/api/servicios";
+        let method = "POST";
+
+        if (action === "edit") {
+            url += `/${serviceId}`;
+            method = "PUT";
+        }
 
         try {
-            let response;
-            let url = "http://localhost:3000/api/servicios";
-            let method = "POST";
-            
-            if (action === "edit") {
-                if (!serviceId) throw new Error("ID de servicio no válido");
-                url += `/${serviceId}`;
-                method = "PUT";
-            }
-
-            response = await fetch(url, {
-                method,
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(serviceData)
             });
 
-            if (!response) throw new Error("No se recibió respuesta del servidor");
-            
-            const data = await response.json();
-            
             if (!response.ok) {
-                throw new Error(data.error || "Error desconocido");
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Error al procesar el servicio");
             }
 
-            alert(`Servicio ${action === "edit" ? "modificado" : "creado"} exitosamente!`);
+            const responseData = await response.json();
+            alert(responseData.message);
             serviceForm.reset();
             serviceFormContainer.classList.add("hidden");
-            window.location.href = "servicios.html";
-            
+            window.location.href = "servicios.html"; // Recargar la página
         } catch (error) {
-            console.error(`Error al ${action === "edit" ? "modificar" : "crear"} servicio:`, error);
+            console.error("Error al procesar el servicio:", error);
             alert(`Error: ${error.message}`);
         }
     });
@@ -174,4 +162,47 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Has cerrado sesión exitosamente.");
         window.location.href = "index.html";
     });
+
+    // Combo actions (Add, Edit, Delete) - Placeholder functionality
+    document.getElementById("add-combo").addEventListener("click", () => {
+        alert("Función para añadir combo en desarrollo.");
+    });
+
+    document.getElementById("edit-combo").addEventListener("click", () => {
+        alert("Función para modificar combo en desarrollo.");
+    });
+
+    document.getElementById("delete-combo").addEventListener("click", () => {
+        alert("Función para eliminar combo en desarrollo.");
+    });
+
+    // Generate and send invitation code
+    document.getElementById("generate-code-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+
+        try {
+            const response = await fetch("http://localhost:3000/api/admin/generate-and-send-code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ email })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Error al generar y enviar el código");
+            }
+
+            const data = await response.json();
+            alert(data.message);
+            document.getElementById("generate-code-form").reset();
+        } catch (error) {
+            console.error("Error:", error);
+            alert(error.message);
+        }
+    });
+
 });

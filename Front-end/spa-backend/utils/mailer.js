@@ -18,7 +18,13 @@ const sendInvitationCode = async (email, codigo) => {
         text: `Tu código de invitación es: ${codigo}`,
     };
 
-    await transporter.sendMail(mailOptions);
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Correo enviado:', info); // Registro de éxito
+    } catch (error) {
+        console.error('Error al enviar el correo:', error); // Registro de error
+        throw error; // Re-lanza el error para que el route handler lo capture
+    }
 };
 
 module.exports = { sendInvitationCode };

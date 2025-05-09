@@ -595,6 +595,10 @@ body {
     width: 30px; /* Tamaño de los íconos */
 }
 
+.login-footer.footer-content img{
+    width: 80px;
+}
+
 /* Título del panel de administración */
 
         /* Estilos adicionales específicos para el panel */
@@ -657,6 +661,19 @@ body {
         
         button:hover {
             background-color: #357ab8;
+        }
+
+        .admin-nav-link {
+            background-color: transparent;
+            border-radius: 0;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            transition: background-color 0.3s;
+        }
+
+        .admin-nav-link:hover {
+            background-color: #575757;
         }
         
         #service-form-container {

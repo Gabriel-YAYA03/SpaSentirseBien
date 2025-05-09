@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spa Relajante - Sentirse Bien</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+    // Verificar sesión y actualizar navbar
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem('token');
+        const loginLink = document.getElementById('nav-login-link');
+        const adminLink = document.getElementById('nav-admin-link');
+
+        if (token) {
+            loginLink.style.display = 'none'; // Ocultar "Iniciar Sesión"
+            adminLink.style.display = 'block'; // Mostrar "Panel Admin"
+        } else {
+            loginLink.style.display = 'block';
+            adminLink.style.display = 'none';
+        }
+    });
+    </script>
 </head>
 <body>
 
-    <!-- Barra de navegación -->
     <nav class="navbar">
         <img src="images/Logo blanco.png" alt="Logo del spa">
         <div class="nav-links">
@@ -16,14 +31,13 @@
             <a href="#servicios">Servicios</a>
             <a href="#turnos">Turnos</a>
             <a href="#contacto">Contacto</a>
-            <a href="login.html">Iniciar Sesión</a> <!-- Enlace para el inicio de sesión -->
+            <a href="login.html" id="nav-login-link">Iniciar Sesión</a>
+            <a href="admin.html" id="nav-admin-link" style="display: none;">Panel Admin</a>
         </div>
     </nav>
 
-    <!-- Encabezado principal -->
     <h1 class="home-title">SENTIRSE BIEN</h1>
 
-    <!-- Sección Hero con imagen y descripción -->
     <section class="hero-section">
         <img src="images/sentirse bien.png" alt="Imagen del Spa">
         <div class="hero-description">
@@ -32,7 +46,6 @@
         </div>
     </section>
 
-    <!-- Sección de Servicios con contenedor -->
     <section class="services-container" id="servicios">
         <h2 class="services-title">NUESTROS SERVICIOS</h2>
         <div class="services">
@@ -55,11 +68,9 @@
             </div>
         </div>
 
-        <!-- Botón para explorar más servicios -->
         <a href="servicios.html" class="explore-button">Explorar todos nuestros servicios</a>
     </section>
 
-    <!-- Sección de Turnos -->
     <section class="turnos-container" id="turnos">
         <div class="turnos-content">
             <div class="turnos-left">
@@ -67,7 +78,6 @@
                 <img src="images/calendario.png" alt="Ícono de calendario">
             </div>
     
-            <!-- Línea separadora -->
             <div class="turnos-divider"></div>
     
             <div class="turnos-right">
@@ -77,10 +87,8 @@
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
     <footer class="contact-container" id="contacto">
         <div class="contact-content">
-            <!-- Caja del logo y descripción -->
             <div class="contact-box">
                 <div class="contact-left">
                     <img src="images/logo blanco.png" alt="Logo del spa">
@@ -88,13 +96,10 @@
                 </div>
             </div>
     
-            <!-- Caja del formulario e información de contacto alineadas horizontalmente -->
             <div class="contact-box contact-right">
-                <!-- Caja general del formulario -->
                 <div class="form-wrapper">
                     <h2 class="contact-title">Newsletter</h2>
     
-                    <!-- Caja interna con color diferenciado -->
                     <div class="form-container">
                         <p>Suscribite para recibir novedades y promociones exclusivas.</p>
                         <form class="subscribe-form">
@@ -104,7 +109,6 @@
                     </div>
                 </div>
     
-                <!-- Información de contacto alineada con el formulario -->
                 <div class="contact-info">
                     <h2 class="contact-title">Contáctenos</h2>
                     <div class="contact-description">

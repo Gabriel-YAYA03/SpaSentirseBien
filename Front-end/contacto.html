@@ -6,27 +6,41 @@
     <title>Confirmar Reserva - Sentirse Bien</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="contacto.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('token');
+            const loginLink = document.getElementById('nav-login-link');
+            const adminLink = document.getElementById('nav-admin-link');
+
+            if (token) {
+                loginLink.style.display = 'none';
+                adminLink.style.display = 'block';
+            } else {
+                loginLink.style.display = 'block';
+                adminLink.style.display = 'none';
+            }
+        });
+    </script>
 </head>
 <body>
 
-    <!-- Barra de navegación -->
     <nav class="navbar">
         <img src="images/Logo blanco.png" alt="Logo del spa">
         <div class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="servicios.html">Servicios</a>
+            <a href="turnos.html">Turnos</a>
             <a href="#contacto">Contacto</a>
+            <a href="login.html" id="nav-login-link">Iniciar Sesión</a>
+            <a href="admin.html" id="nav-admin-link" style="display: none;">Panel Admin</a>
         </div>
     </nav>
 
-    <!-- Título de la página -->
     <h1 class="contact-page-title">CONFIRMAR RESERVA</h1>
 
-    <!-- Contenedor principal -->
     <section class="contact-main-container">
         <div class="contact-form-container">
             <form id="contacto-form">
-                <!-- Datos personales -->
                 <h2>Datos Personales</h2>
                 <div class="contact-form-group">
                     <label for="nombre">Nombre:</label>
@@ -57,14 +71,12 @@
                     <input type="email" id="confirmar-correo" name="confirmar-correo" required>
                 </div>
 
-                <!-- Comentarios -->
                 <h2>Comentario (opcional)</h2>
                 <div class="contact-form-group">
                     <label for="comentario">Comentario:</label>
                     <textarea id="comentario" name="comentario" rows="4"></textarea>
                 </div>
 
-                <!-- Método de pago -->
                 <h2>Método de Pago</h2>
                 <div class="contact-form-group">
                     <label class="contact-metodo-pago-label">
@@ -85,33 +97,60 @@
                     </p>
                 </div>
 
-                <!-- Botón de confirmación -->
                 <button type="submit" class="contact-reserve-button">Confirmar reserva</button>
             </form>
         </div>
 
-        <!-- Resumen de selección -->
         <div class="turnos-summary-container">
             <h2>Resumen de tu reserva</h2>
             <p><strong>Fecha:</strong> <span id="resumen-fecha">No seleccionada</span></p>
             <p><strong>Hora:</strong> <span id="resumen-hora">No seleccionada</span></p>
             <h3>Servicios seleccionados:</h3>
             <ul id="resumen-servicios">
-                <!-- Aquí se agregarán los servicios seleccionados dinámicamente -->
-            </ul>
+                </ul>
             <p><strong>Duración total:</strong> <span id="resumen-duracion">0</span> min</p>
             <p><strong>Precio total:</strong> $<span id="resumen-precio">0</span></p>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="contact-container" id="contacto">
         <div class="contact-content">
-            <p>📍 Dirección: Av. Resistencia 123, Chaco</p>
-            <p>📞 Teléfono: +54 3624762542</p>
-            <p>📩 Email: reservas@sentirsebien.com</p>
+            <div class="contact-box">
+                <div class="contact-left">
+                    <img src="images/logo blanco.png" alt="Logo del spa">
+                    <p>En nuestro spa, encontrarás el equilibrio perfecto entre bienestar y relajación. ¡Déjanos cuidarte!</p>
+                </div>
+            </div>
+    
+            <div class="contact-box contact-right">
+                <div class="form-wrapper">
+                    <h2 class="contact-title">Newsletter</h2>
+    
+                    <div class="form-container">
+                        <p>Suscribite para recibir novedades y promociones exclusivas.</p>
+                        <form class="subscribe-form">
+                            <input type="email" placeholder="Tu correo electrónico" required>
+                            <button type="submit">ENVIAR</button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="contact-info">
+                    <h2 class="contact-title">Contáctenos</h2>
+                    <div class="contact-description">
+                        <p>📍 Dirección: Av. Resistencia 123, Chaco</p>
+                        <p>📞 Teléfono: +54 3624762542</p>
+                        <p>📩 Email: reservas@sentirsebien.com</p>
+                        <div class="social-icons">
+                            <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                            <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                            <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                            <a href="#"><img src="images/whatsapp.png" alt="WhatsApp"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-
 </body>
 </html>

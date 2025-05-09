@@ -35,41 +35,36 @@ router.post('/generate-and-send-code', verifyToken, async (req, res) => {
     }
 });
 
-// Ruta para registrar un nuevo administrador
+// Registro de nuevos administradores
 router.post('/register', async (req, res) => {
     const { nombre, apellido, email, telefono, contraseña, codigoInvitacion } = req.body;
 
+    // Validar que todos los campos estén presentes
     if (!nombre || !apellido || !email || !telefono || !contraseña || !codigoInvitacion) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
 
     try {
-        // Verificar si el código existe y no ha sido usado
-        const [rows] = await db.query('SELECT * FROM codigo_invitacion WHERE codigo = ? AND usado = FALSE', [codigoInvitacion]);
-        if (rows.length === 0) {
-            return res.status(403).json({ error: 'Código de invitación inválido o ya usado' });
+        // Verificar el código de invitación
+        const [codigoRows] = await db.query('SELECT * FROM codigo_invitacion WHERE codigo = ?', [codigoInvitacion]);
+        if (codigoRows.length === 0) {
+            return res.status(401).json({ error: 'Código de invitación inválido' });
         }
 
-        // Encriptar la contraseña
-        const hashedPassword = await bcrypt.hash(contraseña, 10);
+        // Hashear la contraseña
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(contraseña, salt);
 
-        // Insertar el administrador en la base de datos
-        const [result] = await db.query(
+        // Insertar el nuevo administrador en la base de datos
+        await db.query(
             'INSERT INTO administrador (nombre, apellido, email, telefono, contraseña) VALUES (?, ?, ?, ?, ?)',
             [nombre, apellido, email, telefono, hashedPassword]
         );
 
-        // Marcar el código como usado
-        await db.query('UPDATE codigo_invitacion SET usado = TRUE WHERE codigo = ?', [codigoInvitacion]);
+        res.status(201).json({ message: 'Administrador registrado exitosamente' });
 
-        // Generar un token JWT
-        const token = jwt.sign(
-            { id: result.insertId, email },
-            SECRET_KEY,
-            { expiresIn: '1h' }
-        );
-
-        res.status(201).json({ message: 'Administrador registrado exitosamente', token });
+        // Eliminar el código de invitación utilizado
+        await db.query('DELETE FROM codigo_invitacion WHERE codigo = ?', [codigoInvitacion]);
     } catch (err) {
         console.error('Error al registrar el administrador:', err);
         res.status(500).json({ error: 'Error al registrar el administrador' });
@@ -112,11 +107,6 @@ router.post('/login', async (req, res) => {
         console.error(err);
         res.status(500).json({ error: 'Error al iniciar sesión' });
     }
-
-// Ruta protegida
-router.get('/protected', verifyToken, (req, res) => {
-    res.json({ message: 'Acceso permitido', admin: req.admin });
-});
 });
 
 module.exports = router;
